@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
+#[ORM\Table(name: 'experience')]
 class Experience
 {
     #[ORM\Id]
@@ -27,7 +28,8 @@ class Experience
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null; //'scolaire' ou 'professionnel"
+    #[Assert\Choice(choices: ['formation', 'professionnel'])]
+    private ?string $type = null;
 
     #[ORM\Column(length: 255)]
     private ?string $lieu = null;
