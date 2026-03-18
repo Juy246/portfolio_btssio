@@ -9,19 +9,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ExperienceController extends AbstractController
 {
-    #[Route('/experience', name: 'app_formation')]
-    public function index(ExperienceRepository $formationRepository): Response
+    #[Route('/experience', name: 'app_experience')]
+    public function index(ExperienceRepository $experienceRepository): Response
     {
-        $formations = $formationRepository->findBy(
+        $educations = $experienceRepository->findBy(
             ['type' => 'experience']
         );
 
-        $experiences = $formationRepository->findBy(
+        $experiences = $experienceRepository->findBy(
             ['type' => 'professionnel']
         );
 
         return $this->render('experience/index.html.twig', [
-            'formations' => $formations,
+            'educations' => $educations,
             'experiences' => $experiences,
         ]);
     }

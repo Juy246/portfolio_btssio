@@ -27,7 +27,7 @@ class Experience
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null; //'experience' ou 'professionnel"
+    private ?string $type = null; //'scolaire' ou 'professionnel"
 
     #[ORM\Column(length: 255)]
     private ?string $lieu = null;
