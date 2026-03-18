@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjetRepository::class)]
+#[ORM\Table(name: 'projet')]
 class Projet
 {
     #[ORM\Id]
@@ -24,7 +25,13 @@ class Projet
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lienTelecharge = null;
+    private ?string $link_github = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $link_download = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $categorie = null;
 
     public function getId(): ?int
     {
@@ -67,14 +74,38 @@ class Projet
         return $this;
     }
 
-    public function getLienTelecharge(): ?string
+    public function getLinkGithub(): ?string
     {
-        return $this->lienTelecharge;
+        return $this->link_github;
     }
 
-    public function setLienTelecharge(string $lienTelecharge): static
+    public function setLinkGithub(string $link_github): static
     {
-        $this->lienTelecharge = $lienTelecharge;
+        $this->link_github = $link_github;
+
+        return $this;
+    }
+
+    public function getLinkDownload(): ?string
+    {
+        return $this->link_download;
+    }
+
+    public function setLinkDownload(string $link_download): static
+    {
+        $this->link_download = $link_download;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
