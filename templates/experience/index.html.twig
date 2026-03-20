@@ -1,14 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les expériences {% endblock %}
+{% block title %}Mon Parcours - Portfolio{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container mt-5">
+        <h1 class="mb-5 text-center">Mon Parcours</h1>
 
-<div class="example-wrapper">
-    <h1> </h1>
-</div>
+        <section class="mb-5">
+            <h2 class="border-bottom pb-2 mb-4">📚 Formations scolaire</h2>
+            <div class="row">
+                {% for item in formations %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm border-0" style="border-left: 5px solid #0d6efd !important;">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">{{ item.titre }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ item.entrepriseEcole }}</h6>
+                                <p class="small mb-2">📅 {{ item.getPeriode() }} | 📍 {{ item.lieu|default('N/A') }}</p>
+                                <p class="card-text text-muted">{{ item.description|slice(0, 150) }}...</p>
+                                <a href="{{ path('app_experience_show', {id: item.id}) }}" class="btn btn-sm btn-outline-primary">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Aucune formation enregistrée.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="border-bottom pb-2 mb-4">💼 Expériences professionnelles</h2>
+            <div class="row">
+                {% for item in professionnels %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm border-0" style="border-left: 5px solid #198754 !important;">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">{{ item.titre }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ item.entrepriseEcole }}</h6>
+                                <p class="small mb-2">📅 {{ item.getPeriode() }} | 📍 {{ item.lieu|default('N/A') }}</p>
+                                <p class="card-text text-muted">{{ item.description|slice(0, 150) }}...</p>
+                                <a href="{{ path('app_experience_show', {id: item.id}) }}" class="btn btn-sm btn-outline-success">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Aucune expérience professionnelle enregistrée.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
 {% endblock %}

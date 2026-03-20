@@ -17,7 +17,7 @@ class Competence
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $domaine = null;
+    private ?string $categorie = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
@@ -39,14 +39,14 @@ class Competence
         return $this;
     }
 
-    public function getDomaine(): ?string
+    public function getCategorie(): ?string
     {
-        return $this->domaine;
+        return $this->categorie;
     }
 
-    public function setDomaine(string $domaine): static
+    public function setCategorie(string $categorie): static
     {
-        $this->domaine = $domaine;
+        $this->categorie = $categorie;
 
         return $this;
     }

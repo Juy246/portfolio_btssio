@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ experience.nom }} - Portfolio{% endblock %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 3rem 0; min-height: auto;">
+        <div class="container">
+            <nav style="display: flex; gap: 0.5rem; margin-bottom: 2rem; color: #64748b; font-size: 0.9rem;">
+                <a href="{{ path('app_home') }}" style="color: #3b82f6;">Accueil</a>
+                <span>/</span>
+                <a href="{{ path('app_experience_index') }}" style="color: #3b82f6;">Expériences</a>
+                <span>/</span>
+                <span>{{ experience.nom }}</span>
+            </nav>
+
+            <h1 style="margin-bottom: 1rem;">{{ experience.nom }}</h1>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <span class="badge {% if experience.type == 'formation' %}{% else %}badge-success{% endif %}">
+                {{ experience.type == 'formation' ? '📚 Formation' : '💼 Expérience Pro' }}
+            </span>
+                <span style="color: #64748b;">{{ experience.periode }}</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section>
+        <div class="container" style="max-width: 800px;">
+            <div class="card">
+                <!-- Header Info -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #e2e8f0;">
+                    <div>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Établissement</p>
+                        <p style="font-weight: 600; color: #0f172a;">{{ experience.etablissement }}</p>
+                    </div>
+                    <div>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Localisation</p>
+                        <p style="font-weight: 600; color: #0f172a;">📍 {{ experience.lieu }}</p>
+                    </div>
+                    <div>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Période</p>
+                        <p style="font-weight: 600; color: #0f172a;">📅 {{ experience.periode }}</p>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">Description</h3>
+                    <p style="color: #64748b; line-height: 1.8; font-size: 1.05rem;">
+                        {{ experience.description }}
+                    </p>
+                </div>
+
+                <!-- Competences -->
+                {% if competences %}
+                    <div>
+                        <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">
+                            {{ experience.type == 'formation' ? 'Domaines d\'étude' : 'Technologies & Compétences' }}
+                        </h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                            {% for competence in competences %}
+                                <span style="
+                                    background: {% if experience.type == 'formation' %}#dbeafe{% else %}#dcfce7{% endif %};
+                                    color: {% if experience.type == 'formation' %}#1e40af{% else %}#166534{% endif %};
+                                    padding: 0.5rem 1rem;
+                                    border-radius: 0.5rem;
+                                    font-weight: 500;
+                                    font-size: 0.9rem;
+                                    ">
+                                ✓ {{ competence }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Navigation -->
+            <div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem;">
+                <a href="{{ path('app_experience_index') }}" class="btn btn-secondary">
+                    Retour
+                </a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
