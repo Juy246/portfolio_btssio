@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ExperienceRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
-#[ORM\Table(name: 'experience')]
+#[ORM\Table(name: '`experience`')]
 class Experience
 {
     #[ORM\Id]
@@ -16,98 +17,85 @@ class Experience
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $etablissement = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $periode = null;
-
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\Choice(choices: ['formation', 'professionnel'])]
-    private ?string $type = null;
+    #[ORM\Column(length: 100)]
+    private ?string $type = null; // 'education' ou 'professional'
 
     #[ORM\Column(length: 255)]
-    private ?string $lieu = null;
+    private ?string $company = null;
 
-    public function getId(): ?int
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $location = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $startDate = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $endDate = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $displayOrder = null;
+
+    #[ORM\ManyToMany(targetEntity: Competence::class)]
+    #[ORM\JoinTable(name: 'experience_competence')]
+    private Collection $skills;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->skills = new ArrayCollection();
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
+    public function getId(): ?int { return $this->id; }
 
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
+    public function getTitle(): ?string { return $this->title; }
+    public function setTitle(string $title): static { $this->title = $title; return $this; }
 
+    public function getDescription(): ?string { return $this->description; }
+    public function setDescription(?string $description): static { $this->description = $description; return $this; }
+
+    public function getType(): ?string { return $this->type; }
+    public function setType(string $type): static { $this->type = $type; return $this; }
+
+    public function getCompany(): ?string { return $this->company; }
+    public function setCompany(string $company): static { $this->company = $company; return $this; }
+
+    public function getLocation(): ?string { return $this->location; }
+    public function setLocation(?string $location): static { $this->location = $location; return $this; }
+
+    public function getStartDate(): ?string { return $this->startDate; }
+    public function setStartDate(string $startDate): static { $this->startDate = $startDate; return $this; }
+
+    public function getEndDate(): ?string { return $this->endDate; }
+    public function setEndDate(?string $endDate): static { $this->endDate = $endDate; return $this; }
+
+    public function getDisplayOrder(): ?int { return $this->displayOrder; }
+    public function setDisplayOrder(?int $displayOrder): static { $this->displayOrder = $displayOrder; return $this; }
+
+    public function getSkills(): Collection { return $this->skills; }
+
+    public function addSkill(Competence $skill): static
+    {
+        if (!$this->skills->contains($skill)) { $this->skills->add($skill); }
         return $this;
     }
 
-    public function getEtablissement(): ?string
+    public function removeSkill(Competence $skill): static
     {
-        return $this->etablissement;
-    }
-
-    public function setEtablissement(string $etablissement): static
-    {
-        $this->etablissement = $etablissement;
-
+        $this->skills->removeElement($skill);
         return $this;
     }
 
-    public function getPeriode(): ?string
+    public function getPeriod(): string
     {
-        return $this->periode;
-    }
-
-    public function setPeriode(string $periode): static
-    {
-        $this->periode = $periode;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getLieu(): ?string
-    {
-        return $this->lieu;
-    }
-
-    public function setLieu(string $lieu): static
-    {
-        $this->lieu = $lieu;
-
-        return $this;
+        $start = \DateTime::createFromFormat('Y-m', $this->startDate)?->format('m/Y') ?? $this->startDate;
+        if ($this->endDate) {
+            $end = \DateTime::createFromFormat('Y-m', $this->endDate)?->format('m/Y') ?? $this->endDate;
+            return "{$start} - {$end}";
+        }
+        return "{$start} - Present";
     }
 }

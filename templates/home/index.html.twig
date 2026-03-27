@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div style="max-width: 600px;">
+                <h1 class="fade-in-up">Bonjour, je m'appelle Jingyuan LUO</h1>
+                <p class="fade-in-up" style="animation-delay: 0.1s; font-size: 1.1rem; color: #64748b; margin-bottom: 2rem;">
+                    Étudiant en BTS SIO spécialité SLAM, passionné par l'analyse de besoin, l'analyse de données, le développement de logiciel et les solutions technologiques innovantes.
+                </p>
+                <div class="hero-buttons fade-in-up" style="animation-delay: 0.2s;">
+                    <a href="{{ path('app_experience_index') }}" class="btn btn-primary">
+                        Expériences
+                    </a>
+                    <a href="{{ path('app_contact_index') }}" class="btn btn-secondary">
+                        Me contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section>
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h2 class="reveal">À propos</h2>
+                    <p class="reveal" style="color: #64748b; margin-bottom: 1.5rem;">
+                        Je suis un développeur passionné en formation BTS SIO spécialité SLAM.
+                        Je crée des applications web robustes, scalables et performantes
+                        en utilisant les technologies modernes.
+                    </p>
+                    <p class="reveal" style="color: #64748b; animation-delay: 0.1s;">
+                        Mon approche : combiner design épuré, performance optimale
+                        et code de qualité pour créer des solutions qui marquent.
+                    </p>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 class="reveal" style="animation-delay: 0.2s; margin-bottom: 1rem;">Stack technique</h4>
+                        <ul class="reveal" style="list-style: none; animation-delay: 0.3s; color: #64748b;">
+                            <li style="margin-bottom: 0.5rem;">🔧 <strong>Backend:</strong> PHP 8.4, Symfony 8, Laravel</li>
+                            <li style="margin-bottom: 0.5rem;">🎨 <strong>Frontend:</strong> JavaScript, HTML5, CSS3, Vue.js</li>
+                            <li style="margin-bottom: 0.5rem;">🗄️ <strong>Base de données:</strong> PostgreSQL, MySQL, SQLite</li>
+                            <li style="margin-bottom: 0.5rem;">⚙️ <strong>DevOps:</strong> Docker, Git, GitHub Actions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal" style="animation-delay: 0.2s;">
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 5rem; margin-bottom: 1rem;">💻</div>
+                        <h3>Développement Web Full Stack</h3>
+                        <p style="color: #64748b; margin-top: 1rem;">
+                            Création d'applications modernes, performantes et scalables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Experiences -->
+    <section>
+        <div class="container">
+            <h2 class="reveal">Parcours récent</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                {% for formation in recent_formations %}
+                    <div class="card reveal">
+                        <span class="badge" style="margin-bottom: 1rem;">Formation</span>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ formation.nom }}</h3>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+                            {{ formation.etablissement }}
+                        </p>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                            📅 {{ formation.periode }}
+                        </p>
+                        <a href="{{ path('app_experience_show', {'id': formation.id}) }}" style="color: #3b82f6; font-weight: 600;">
+                            Détails →
+                        </a>
+                    </div>
+                {% endfor %}
+
+                {% for experience in recent_experiences %}
+                    <div class="card reveal">
+                        <span class="badge badge-success" style="margin-bottom: 1rem;">Expérience Pro</span>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ experience.nom }}</h3>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+                            {{ experience.etablissement }}
+                        </p>
+                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                            📅 {{ experience.periode }}
+                        </p>
+                        <a href="{{ path('app_experience_show', {'id': experience.id}) }}" style="color: #10b981; font-weight: 600;">
+                            Détails →
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="{{ path('app_experience_index') }}" class="btn btn-primary reveal" style="animation-delay: 0.4s;">
+                    Mon parcours
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Projects -->
+    <section style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="reveal">Projets récents</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                {% for projet in recent_projets %}
+                    <div class="card reveal">
+                        {% if projet.imageUrl %}
+                            <img src="{{ projet.imageUrl }}" alt="{{ projet.titre }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        {% else %}
+                            <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 0.5rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                📦
+                            </div>
+                        {% endif %}
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ projet.titre }}</h3>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">
+                            {{ projet.description|slice(0, 100) }}...
+                        </p>
+                        <a href="{{ path('app_projet_show', {'id': projet.id}) }}" style="color: #3b82f6; font-weight: 600;">
+                            Voir le projet →
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="{{ path('app_projet_index') }}" class="btn btn-primary reveal" style="animation-delay: 0.4s;">
+                    Voir tous les projets
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+        <div class="container">
+            <h2 class="reveal">Compétences clés</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                {% for competence in competences %}
+                    <div class="reveal" style="animation-delay: {{ loop.index0 * 0.1 }}s;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">
+                            {% if competence.domaine == 'Backend' %}
+                                🔧
+                            {% elseif competence.domaine == 'Frontend' %}
+                                🎨
+                            {% elseif competence.domaine == 'Base de données' %}
+                                🗄️
+                            {% else %}
+                                ⚙️
+                            {% endif %}
+                        </div>
+                        <h4>{{ competence.nom }}</h4>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">
+                            {{ competence.description|slice(0, 50) }}
+                        </p>
+                        {% if competence.pourcentage %}
+                            <div style="margin-top: 1rem;">
+                                <div style="background: #e2e8f0; height: 6px; border-radius: 9999px; overflow: hidden;">
+                                    <div style="background: #3b82f6; height: 100%; width: {{ competence.pourcentage }}%;"></div>
+                                </div>
+                                <small style="color: #94a3b8;">{{ competence.pourcentage }}%</small>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; text-align: center;">
+        <div class="container">
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" class="reveal" style="animation-delay: 0.2s;">
+                <a href="{{ path('app_contact_index') }}" class="btn" style="background: white; color: #3b82f6; font-weight: 600;">
+                    ✉️ Me contacter
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="btn" style="border: 2px solid white; color: white;">
+                    💼 LinkedIn
+                </a>
+                <a href="https://github.com" target="_blank" class="btn" style="border: 2px solid white; color: white;">
+                    🐙 GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
