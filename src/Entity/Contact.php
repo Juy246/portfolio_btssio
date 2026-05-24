@@ -25,7 +25,7 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $sujet = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $message = null;
 
     #[ORM\Column(type: 'datetime')]

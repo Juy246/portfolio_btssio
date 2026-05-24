@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VeilleRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VeilleRepository::class)]
@@ -14,13 +15,17 @@ class Veille
     private ?int $id = null;
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
-    #[ORM\Column(type:Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
-    #[ORM\Column(length: 500)]
+    #[ORM\Column(length: 500, nullable: true)]
     private ?string $url = null;
-    #[ORM\Column(type:Types::DATETIME_MUTABLE)]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pdfFile = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $categorie = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
-    #[ORM\Column(type:Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
     public function getId(): ?int
@@ -49,9 +54,27 @@ class Veille
     {
         return $this->url;
     }
-    public function setUrl(string $url): static
+    public function setUrl(?string $url): static
     {
         $this->url = $url;
+        return $this;
+    }
+    public function getPdfFile(): ?string
+    {
+        return $this->pdfFile;
+    }
+    public function setPdfFile(?string $pdfFile): static
+    {
+        $this->pdfFile = $pdfFile;
+        return $this;
+    }
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+    public function setCategorie(?string $categorie): static
+    {
+        $this->categorie = $categorie;
         return $this;
     }
     public function getDate(): ?\DateTimeInterface
