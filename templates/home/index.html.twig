@@ -29,32 +29,43 @@
                 <div class="fade-in">
                     <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary);">Présentation personnelle</h3>
                     <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-                        Bonjour, je m'appelle Jingyuan LUO, étudiant en formation BTS SIO spécialité SLAM (Solutions Logicielles et Applications Métier).
+                        Bonjour, je m'appelle Jingyuan LUO, étudiante en formation BTS SIO spécialité SLAM (Solutions Logicielles et Applications Métier).
                     </p>
                     <p style="margin-bottom: 1.5rem;">
-                        Passionné par l'analyse de besoin, l'analyse de données et le développement de solutions technologiques innovantes,
-                        je crée des applications web robustes et performantes en utilisant les technologies modernes.
+                        Passionnée par les nouvelles technologies, l’analyse des besoins et le développement de solutions numériques,
+                        je conçois des applications fiables et performantes à l’aide de technologies modernes.
+                        Curieuse, rigoureuse et dotée d’une bonne capacité d’adaptation,j’apprécie le travail en équipe ainsi que la résolution
+                        de problématiques techniques concrètes.
                     </p>
-                    <p style="margin-bottom: 2rem;">
-                        Mon approche combine design épuré, performance optimale et code de qualité pour résoudre des problèmes réels.
+                    <p style="margin-bottom: 1.5rem;">
+                        Attirée par les domaines de la donnée et des systèmes d’information, je m’intéresse particulièrement à l’analyse des besoins,
+                        à l’exploitation des données et à la conception de solutions décisionnelles. Mon objectif est de renforcer mes compétences afin
+                        de contribuer à l’amélioration des systèmes d’information et d’accompagner la prise de décision grâce à une exploitation
+                        pertinente des données.
                     </p>
                 </div>
 
                 <div class="card fade-in" style="animation-delay: 0.2s;">
                     <div style="text-align: center; padding: 2rem;">
                         <h4 style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem;">À propos du BTS SIO</h4>
-                        <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem;">
-                            Le BTS SIO (Services Informatiques aux Organisations) est une formation
-                            de 2 ans qui prépare les étudiants aux métiers de l'informatique, avec une spécialité SLAM
-                            (développement de solutions logicielles).
+                        <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1rem;">
+                            Le BTS SIO (Services Informatiques aux Organisations) est une formation de niveau bac+2 qui prépare aux
+                            métiers de l’informatique au sein des entreprises et des organisations.
                         </p>
-                                <div style="border-top: 1px solid var(--border); padding-top: 1rem; text-align: left;">
-                            <p><strong>📚 Formé à :</strong></p>
-                            <ul style="list-style: none; margin-top: 0.5rem;">
-                                <li>✓ Analyse et conception d'applications</li>
-                                <li>✓ Développement web full-stack</li>
-                                <li>✓ Gestion de projets</li>
-                                <li>✓ Sécurité des données</li>
+
+                        <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;">
+                            <li><strong>SLAM</strong> (Solutions Logicielles et Applications Métiers) : <br> développement d’applications web et logicielles, bases de données, programmation.</li>
+                            <li><strong>SISR</strong> (Solutions d’Infrastructure, Systèmes et Réseaux) : <br> administration des systèmes, réseaux et cybersécurité.</li>
+                        </ul>
+
+                        <div style="border-top: 1px solid var(--border); padding-top: 1rem; text-align: left;">
+                            <p><strong>Compétences acquises :</strong></p>
+                            <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+                                <li>Analyse des besoins</li>
+                                <li>Développement d’applications</li>
+                                <li>Gestion de projets</li>
+                                <li>Cybersécurité</li>
+                                <li>Support utilisateur</li>
                             </ul>
                         </div>
                     </div>
@@ -309,7 +320,7 @@
                                         {% endif %}
 
                                         <p class="project-desc">
-                                            {{ proj.getDescription()|slice(0, 120) }}{% if proj.getDescription()|length > 120 %}...{% endif %}
+                                            {{ proj.getDescription() }}
                                         </p>
 
                                         <div class="project-links">
@@ -405,7 +416,7 @@
                                 {% endif %}
 
                                 <p class="veille-desc">
-                                    {{ veille.getDescription()|slice(0, 120) }}{% if veille.getDescription()|length > 120 %}...{% endif %}
+                                    {{ veille.getDescription() }}
                                 </p>
 
                                 <div class="veille-meta">

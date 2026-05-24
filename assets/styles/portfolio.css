@@ -232,7 +232,9 @@ nav a:hover::after {
    6️⃣ HERO SECTION
    ============================================ */
 .hero {
-  min-height: 100vh;
+  /* Reserve space for the sticky header so the hero appears truly centered
+     even when the header is present. Adjust the value if your header height changes. */
+  min-height: calc(100vh - 72px);
   display: flex;
   align-items: center;
   justify-content: center;
