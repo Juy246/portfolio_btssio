@@ -16,11 +16,11 @@ class ExperienceController extends AbstractController
         return $this->render('experience/index.html.twig', [
             'formations' => $experienceRepository->findBy(
                 ['type' => 'education'],
-                ['dateDebut' => 'DESC', 'ordre' => 'ASC']
+                ['startDate' => 'DESC', 'displayOrder' => 'ASC']
             ),
             'professionnels' => $experienceRepository->findBy(
-                ['type' => 'professionnel'],
-                ['dateDebut' => 'DESC', 'ordre' => 'ASC']
+                ['type' => 'professional'],
+                ['startDate' => 'DESC', 'displayOrder' => 'ASC']
             ),
         ]);
     }
