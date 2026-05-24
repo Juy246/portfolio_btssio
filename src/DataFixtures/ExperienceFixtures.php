@@ -19,7 +19,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'Stagiaire Développeur',
                 'company' => 'Botanic',
-                'location' => 'Archamps, Haute-Savoie',
+                'location' => 'Archamps, Haute-Savoie (France)',
                 'startDate' => new \DateTime('2026-01-01'),
                 'endDate' => new \DateTime('2026-03-31'),
                 'type' => 'professional',
@@ -37,7 +37,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'Stagiaire en informatique',
                 'company' => 'Botanic',
-                'location' => 'Archamps, Auvergne-Rhône-Alpes, France',
+                'location' => 'Archamps, Haute-Savoie (France)',
                 'startDate' => new \DateTime('2025-06-01'),
                 'endDate' => new \DateTime('2025-06-30'),
                 'type' => 'professional',
@@ -55,7 +55,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'BTS Services Informatiques aux Organisations',
                 'company' => 'Lycée Gabriel Fauré',
-                'location' => 'Annecy, Haute-Savoie',
+                'location' => 'Annecy, Haute-Savoie (France)',
                 'startDate' => new \DateTime('2024-09-01'),
                 'endDate' => new \DateTime('2026-06-30'),
                 'type' => 'education',
@@ -68,7 +68,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'Licence LEA - Anglais Chinois',
                 'company' => 'Université Grenoble Alpes',
-                'location' => 'Grenoble, Isère',
+                'location' => 'Grenoble, Isère (France)',
                 'startDate' => new \DateTime('2019-09-01'),
                 'endDate' => new \DateTime('2023-06-30'),
                 'type' => 'education',
@@ -82,7 +82,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'Baccalauréat STMG',
                 'company' => 'Lycée Guillaume Fichet',
-                'location' => 'Bonneville, Haute-Savoie',
+                'location' => 'Bonneville, Haute-Savoie (France)',
                 'startDate' => new \DateTime('2016-09-01'),
                 'endDate' => new \DateTime('2019-06-30'),
                 'type' => 'education',
@@ -99,7 +99,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'Bénévole',
                 'company' => 'Festival international du film d\'animation d\'Annecy',
-                'location' => 'Annecy, France',
+                'location' => 'Annecy, Haute-Savoie',
                 'startDate' => new \DateTime('2021-06-01'),
                 'endDate' => new \DateTime('2021-06-30'),
                 'type' => 'associatif',

@@ -19,7 +19,7 @@ class ProjetFixtures extends Fixture
                 'description' => "Développement d’une API REST de gestion des rapports de visite pour le laboratoire GSB.
 Cette solution s’accompagne d’une application mobile Android permettant aux visiteurs médicaux de centraliser, consulter et gérer leurs comptes-rendus de visite de manière sécurisée et intuitive.",
                 'linkGithub' => 'https://github.com/Juy246/api_rest_gsb_visite',
-                'linkDownload' => 'projets/Projet GSB.pdf',
+                'linkDownload' => 'projets/GSB_Jingyuan_LUO.pdf',
             ],
 
             [
@@ -29,17 +29,17 @@ Cette solution s’accompagne d’une application mobile Android permettant aux 
                 'description' => "Conventio est une application web développée pour un lycée afin de centraliser la création, la validation et la signature des conventions de stage.
 Le projet vise à digitaliser entièrement le processus administratif grâce à une gestion simplifiée des documents et l’intégration d’un système de signature électronique.",
                 'linkGithub' => 'https://github.com/maxervj/Conventio',
-                'linkDownload' => 'projets/Projet Conventio_Technique.pdf',
+                'linkDownload' => 'projets/Conventio_Technique_Jingyuan_LUO.pdf',
             ],
 
             [
                 'titre' => 'Share Business',
                 'matiere' => 'Développement application web',
-                'categorie' => 'Cybersécurité',
+                'categorie' => 'Application web',
                 'description' => "Développement d’une application web sécurisée permettant le partage de documents sensibles (RIB, fichiers confidentiels) ainsi que de mots de passe.
 L’objectif est de générer des liens temporaires vers des fichiers hébergés sur des serveurs exposés à l’extérieur afin de faciliter leur transmission sécurisée par email aux destinataires.",
                 'linkGithub' => '',
-                'linkDownload' => 'projets/Projet ShareBusiness.pdf',
+                'linkDownload' => 'projets/DAT-ShareBusiness-Jingyuan_LUO.odt',
             ],
 
         ];
