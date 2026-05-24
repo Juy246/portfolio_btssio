@@ -154,7 +154,7 @@
                 {% set grouped = {} %}
                 {% for comp in competences %}
                     {% set cat = comp.getCategorie() %}
-                    {% if not grouped[cat] %}
+                    {% if grouped[cat]|default(null) is null %}
                         {% set grouped = grouped|merge({(cat): []}) %}
                     {% endif %}
                     {% set grouped = grouped|merge({(cat): grouped[cat]|merge([comp])}) %}
@@ -459,12 +459,12 @@
                             <h5 style="font-size: 0.95rem; margin: 0;">GitHub</h5>
                         </a>
 
-                        <a href="https://linkedin.com" target="_blank" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
+                        <a href="https://www.linkedin.com/in/jingyuan-annie-luo/" target="_blank" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
                             <i class="fab fa-linkedin" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);"></i>
                             <h5 style="font-size: 0.95rem; margin: 0;">LinkedIn</h5>
                         </a>
 
-                        <a href="mailto:jingyuan@example.com" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
+                        <a href="mailto:annieluo@outlook.fr" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
                             <i class="fas fa-envelope" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);"></i>
                             <h5 style="font-size: 0.95rem; margin: 0;">Email</h5>
                         </a>

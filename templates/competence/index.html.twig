@@ -10,14 +10,26 @@
             {% for categorie, competences in grouped_competences %}
                 <section class="mb-5">
                     <h2 class="border-bottom pb-2 mb-4">
-                        {% if categorie == 'Backend' %}
-                            🔧
-                        {% elseif categorie == 'Frontend' %}
-                            🎨
-                        {% elseif categorie == 'Database' or categorie == 'Bases de données' %}
+                        {% if categorie == 'Environnements de développement' %}
+                            💻
+                        {% elseif categorie == 'Gestion de bases de données et requêtes' %}
                             🗄️
-                        {% else %}
+                        {% elseif categorie == 'Développement web' %}
+                            🌐
+                        {% elseif categorie == 'Développement d''application' %}
+                            📱
+                        {% elseif categorie == 'Cybersécurité' %}
+                            🔒
+                        {% elseif categorie == 'Systèmes d''exploitation' %}
                             ⚙️
+                        {% elseif categorie == 'Virtualisation' %}
+                            🖥️
+                        {% elseif categorie == 'Cloud' %}
+                            ☁️
+                        {% elseif categorie == 'Bureautique' %}
+                            📊
+                        {% else %}
+                            ⚡
                         {% endif %}
                         {{ categorie }}
                     </h2>
@@ -25,12 +37,31 @@
                     <div class="row">
                         {% for comp in competences %}
                             <div class="col-md-6 mb-4">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold">{{ comp.getNom() }}</h5>
-                                        <p class="card-text text-muted">{{ comp.getDescription() }}</p>
+                                {% if comp.getUrl() %}
+                                    <a href="{{ comp.getUrl() }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                        <div class="card h-100 shadow-sm border-0 competence-card">
+                                            <div class="card-body d-flex align-items-center justify-content-between">
+                                                <h5 class="card-title fw-bold mb-0">{{ comp.getNom() }}</h5>
+                                                {% if comp.getLogo() %}
+                                                    <img src="{{ asset('images/competences/' ~ comp.getLogo()) }}" alt="{{ comp.getNom() }} logo" style="height:32px; width:auto; object-fit:contain;" />
+                                                {% else %}
+                                                    <span class="badge bg-primary ms-2">{{ _self.getIcon(comp.getNom()) }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% else %}
+                                    <div class="card h-100 shadow-sm border-0">
+                                        <div class="card-body d-flex align-items-center justify-content-between">
+                                            <h5 class="card-title fw-bold mb-0">{{ comp.getNom() }}</h5>
+                                            {% if comp.getLogo() %}
+                                                <img src="{{ asset('images/competences/' ~ comp.getLogo()) }}" alt="{{ comp.getNom() }} logo" style="height:32px; width:auto; object-fit:contain;" />
+                                            {% else %}
+                                                <span class="badge bg-secondary ms-2">{{ _self.getIcon(comp.getNom()) }}</span>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                </div>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
@@ -46,5 +77,69 @@
             </a>
         </div>
     </div>
+
+    <style>
+        .competence-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .competence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        a:has(.competence-card) {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:has(.competence-card) .card-title {
+            color: inherit;
+        }
+    </style>
 {% endblock %}
 
+{% macro getIcon(name) %}
+    {% set icons = {
+        'GitHub': '🐙',
+        'GitLab': '🦊',
+        'Visual Studio Code': '📝',
+        'Visual Studio 2022': '💻',
+        'Android Studio': '🤖',
+        'PhpStorm': '⚡',
+        'MySQL': '🐬',
+        'SQL': '🔍',
+        'MariaDB': '🪶',
+        'MongoDB': '🍃',
+        'Microsoft SQL Server': '🗣️',
+        'HTML': '🏗️',
+        'CSS': '🎨',
+        'PHP': '🐘',
+        'JavaScript': '☕',
+        'TypeScript': '📘',
+        'Bootstrap 5': '🅱️',
+        'Symfony': '🏛️',
+        'WordPress': 'W',
+        'ExpressJS': '⚙️',
+        'React': '⚛️',
+        'C# (WPF/Console)': '#️⃣',
+        'Python': '🐍',
+        'Java': '☕',
+        'RGPD': '📋',
+        'Cisco': '🌐',
+        'OWASP': '🛡️',
+        'Chiffrement': '🔐',
+        'Windows 11': '🪟',
+        'Windows Server': '🖥️',
+        'Linux Debian': '🐧',
+        'Linux Kali': '🖥️',
+        'VMWare': '🖥️',
+        'VirtualBox': '📦',
+        'AWS': '☁️',
+        'Microsoft Azure': '☁️',
+        'Google Workspace': '📚',
+        'Microsoft Office': '📋'
+    } %}
+    {{ icons[name] ?? '✨' }}
+{% endmacro %}
