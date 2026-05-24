@@ -2,197 +2,561 @@
 
 {% block body %}
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-blur-1"></div>
+            <div class="hero-blur-2"></div>
+        </div>
         <div class="container">
-            <div style="max-width: 600px;">
-                <h1 class="fade-in-up">Bonjour, je m'appelle Jingyuan LUO</h1>
-                <p class="fade-in-up" style="animation-delay: 0.1s; font-size: 1.1rem; color: #64748b; margin-bottom: 2rem;">
-                    Étudiant en BTS SIO spécialité SLAM, passionné par l'analyse de besoin, l'analyse de données, le développement de logiciel et les solutions technologiques innovantes.
-                </p>
-                <div class="hero-buttons fade-in-up" style="animation-delay: 0.2s;">
-                    <a href="{{ path('app_experience_index') }}" class="btn btn-primary">
-                        Expériences
-                    </a>
-                    <a href="{{ path('app_contact_index') }}" class="btn btn-secondary">
-                        Me contacter
-                    </a>
+            <div class="hero-content">
+                <h1>Jingyuan LUO</h1>
+                <p class="subtitle">BTS SIO Spécialité SLAM</p>
+                <div class="hero-cta">
+                    <a href="#about" class="btn btn-primary"><i class="fas fa-arrow-down btn-icon"></i>Explorer</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section>
+    <!-- À propos Section -->
+    <section class="section" id="about">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                <div>
-                    <h2 class="reveal">À propos</h2>
-                    <p class="reveal" style="color: #64748b; margin-bottom: 1.5rem;">
-                        Je suis un développeur passionné en formation BTS SIO spécialité SLAM.
-                        Je crée des applications web robustes, scalables et performantes
-                        en utilisant les technologies modernes.
+            <div class="section-title">
+                <h2>À propos</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                <div class="fade-in">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary);">Présentation personnelle</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        Bonjour, Je m'appelle Jingyuan LUO, étudiant en formation BTS SIO spécialité SLAM (Solutions Logicielles et Applications Métier).
                     </p>
-                    <p class="reveal" style="color: #64748b; animation-delay: 0.1s;">
-                        Mon approche : combiner design épuré, performance optimale
-                        et code de qualité pour créer des solutions qui marquent.
+                    <p style="margin-bottom: 1.5rem;">
+                        Passionné par l'analyse de besoin, l'analyse de données et le développement de solutions technologiques innovantes,
+                        je crée des applications web robustes et performantes en utilisant les technologies modernes.
                     </p>
-
-                    <div style="margin-top: 2rem;">
-                        <h4 class="reveal" style="animation-delay: 0.2s; margin-bottom: 1rem;">Stack technique</h4>
-                        <ul class="reveal" style="list-style: none; animation-delay: 0.3s; color: #64748b;">
-                            <li style="margin-bottom: 0.5rem;">🔧 <strong>Backend:</strong> PHP 8.4, Symfony 8, Laravel</li>
-                            <li style="margin-bottom: 0.5rem;">🎨 <strong>Frontend:</strong> JavaScript, HTML5, CSS3, Vue.js</li>
-                            <li style="margin-bottom: 0.5rem;">🗄️ <strong>Base de données:</strong> PostgreSQL, MySQL, SQLite</li>
-                            <li style="margin-bottom: 0.5rem;">⚙️ <strong>DevOps:</strong> Docker, Git, GitHub Actions</li>
-                        </ul>
-                    </div>
+                    <p style="margin-bottom: 2rem;">
+                        Mon approche combine design épuré, performance optimale et code de qualité pour résoudre des problèmes réels.
+                    </p>
                 </div>
 
-                <div class="reveal" style="animation-delay: 0.2s;">
-                    <div class="card" style="text-align: center;">
-                        <div style="font-size: 5rem; margin-bottom: 1rem;">💻</div>
-                        <h3>Développement Web Full Stack</h3>
-                        <p style="color: #64748b; margin-top: 1rem;">
-                            Création d'applications modernes, performantes et scalables.
+                <div class="card fade-in" style="animation-delay: 0.2s;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <h4 style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem;">À propos du BTS SIO</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                            Le BTS SIO (Services Informatiques aux Organisations) est une formation
+                            de 2 ans qui prépare les étudiants aux métiers de l'informatique, avec une spécialité SLAM
+                            (développement de solutions logicielles).
                         </p>
+                        <div style="border-top: 1px solid var(--border); padding-top: 1rem; text-align: left;">
+                            <p><strong>📚 Formé à :</strong></p>
+                            <ul style="list-style: none; margin-top: 0.5rem;">
+                                <li>✓ Analyse et conception d'applications</li>
+                                <li>✓ Développement web full-stack</li>
+                                <li>✓ Gestion de projets</li>
+                                <li>✓ Sécurité des données</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Recent Experiences -->
-    <section>
+    <!-- Parcours Section -->
+    <section class="section" id="parcours">
         <div class="container">
-            <h2 class="reveal">Parcours récent</h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                {% for formation in recent_formations %}
-                    <div class="card reveal">
-                        <span class="badge" style="margin-bottom: 1rem;">Formation</span>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ formation.nom }}</h3>
-                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
-                            {{ formation.etablissement }}
-                        </p>
-                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem;">
-                            📅 {{ formation.periode }}
-                        </p>
-                        <a href="{{ path('app_experience_show', {'id': formation.id}) }}" style="color: #3b82f6; font-weight: 600;">
-                            Détails →
-                        </a>
-                    </div>
-                {% endfor %}
-
-                {% for experience in recent_experiences %}
-                    <div class="card reveal">
-                        <span class="badge badge-success" style="margin-bottom: 1rem;">Expérience Pro</span>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ experience.nom }}</h3>
-                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
-                            {{ experience.etablissement }}
-                        </p>
-                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem;">
-                            📅 {{ experience.periode }}
-                        </p>
-                        <a href="{{ path('app_experience_show', {'id': experience.id}) }}" style="color: #10b981; font-weight: 600;">
-                            Détails →
-                        </a>
-                    </div>
-                {% endfor %}
+            <div class="section-title">
+                <h2>Parcours</h2>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="{{ path('app_experience_index') }}" class="btn btn-primary reveal" style="animation-delay: 0.4s;">
-                    Mon parcours
-                </a>
-            </div>
+            {% if experiences is not empty %}
+                {% set formations = [] %}
+                {% set professionnels = [] %}
+
+                {% for exp in experiences %}
+                    {% if exp.getType() == 'education' %}
+                        {% set formations = formations|merge([exp]) %}
+                    {% else %}
+                        {% set professionnels = professionnels|merge([exp]) %}
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Formations -->
+                {% if formations is not empty %}
+                    <div style="margin-bottom: 4rem;">
+                        <h3 style="margin-bottom: 2rem; font-size: 1.25rem; color: var(--primary);">📚 Scolarité</h3>
+                        <div class="timeline">
+                            {% for form in formations %}
+                                <div class="timeline-item fade-in">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-date">{{ form.getPeriod() }}</div>
+                                        <h5 class="timeline-title">{{ form.getTitle() }}</h5>
+                                        <p class="timeline-subtitle">
+                                            {{ form.getCompany() }}
+                                            {% if form.getLocation() %} • {{ form.getLocation() }}{% endif %}
+                                        </p>
+                                        {% if form.getDescription() %}
+                                            <p class="timeline-desc">{{ form.getDescription() }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Expériences Professionnelles -->
+                {% if professionnels is not empty %}
+                    <div>
+                        <h3 style="margin-bottom: 2rem; font-size: 1.25rem; color: var(--primary);">💼 Expérience Professionnelle</h3>
+                        <div class="timeline">
+                            {% for exp in professionnels %}
+                                <div class="timeline-item fade-in">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-date">{{ exp.getPeriod() }}</div>
+                                        <h5 class="timeline-title">{{ exp.getTitle() }}</h5>
+                                        <p class="timeline-subtitle">
+                                            {{ exp.getCompany() }}
+                                            {% if exp.getLocation() %} • {{ exp.getLocation() }}{% endif %}
+                                        </p>
+                                        {% if exp.getDescription() %}
+                                            <p class="timeline-desc">{{ exp.getDescription() }}</p>
+                                        {% endif %}
+
+                                        {% if exp.getSkills()|length > 0 %}
+                                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                                {% for skill in exp.getSkills() %}
+                                                    <span class="skill-badge">{{ skill.getNom() }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </section>
 
-    <!-- Recent Projects -->
-    <section style="background: #f8fafc;">
+    <!-- Compétences Section -->
+    <section class="section" id="competences">
         <div class="container">
-            <h2 class="reveal">Projets récents</h2>
+            <div class="section-title">
+                <h2>Compétences</h2>
+            </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                {% for projet in recent_projets %}
-                    <div class="card reveal">
-                        {% if projet.imageUrl %}
-                            <img src="{{ projet.imageUrl }}" alt="{{ projet.titre }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        {% else %}
-                            <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 0.5rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
-                                📦
-                            </div>
-                        {% endif %}
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ projet.titre }}</h3>
-                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">
-                            {{ projet.description|slice(0, 100) }}...
-                        </p>
-                        <a href="{{ path('app_projet_show', {'id': projet.id}) }}" style="color: #3b82f6; font-weight: 600;">
-                            Voir le projet →
-                        </a>
-                    </div>
+            {% if competences is not empty %}
+                {% set grouped = {} %}
+                {% for comp in competences %}
+                    {% set cat = comp.getCategorie() %}
+                    {% if not grouped[cat] %}
+                        {% set grouped = grouped|merge({(cat): []}) %}
+                    {% endif %}
+                    {% set grouped = grouped|merge({(cat): grouped[cat]|merge([comp])}) %}
                 {% endfor %}
-            </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="{{ path('app_projet_index') }}" class="btn btn-primary reveal" style="animation-delay: 0.4s;">
-                    Voir tous les projets
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section>
-        <div class="container">
-            <h2 class="reveal">Compétences clés</h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                {% for competence in competences %}
-                    <div class="reveal" style="animation-delay: {{ loop.index0 * 0.1 }}s;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">
-                            {% if competence.domaine == 'Backend' %}
+                {% for categorie, comps in grouped %}
+                    <div class="fade-in" style="margin-bottom: 3rem;">
+                        <h3 style="margin-bottom: 2rem; font-size: 1.2rem;">
+                            {% if categorie == 'Backend' %}
                                 🔧
-                            {% elseif competence.domaine == 'Frontend' %}
+                            {% elseif categorie == 'Frontend' %}
                                 🎨
-                            {% elseif competence.domaine == 'Base de données' %}
+                            {% elseif categorie == 'Database' or categorie == 'Bases de données' %}
                                 🗄️
                             {% else %}
                                 ⚙️
                             {% endif %}
-                        </div>
-                        <h4>{{ competence.nom }}</h4>
-                        <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">
-                            {{ competence.description|slice(0, 50) }}
-                        </p>
-                        {% if competence.pourcentage %}
-                            <div style="margin-top: 1rem;">
-                                <div style="background: #e2e8f0; height: 6px; border-radius: 9999px; overflow: hidden;">
-                                    <div style="background: #3b82f6; height: 100%; width: {{ competence.pourcentage }}%;"></div>
+                            {{ categorie|default('Autres') }}
+                        </h3>
+
+                        <div class="skills-grid">
+                            {% for comp in comps %}
+                                <div class="card" style="text-align: center; padding: 1.5rem;">
+                                    <h5 style="font-size: 1rem; color: var(--text-dark); font-weight: 600; margin-bottom: 0.5rem;">{{ comp.getNom() }}</h5>
+                                    <p class="text-muted" style="font-size: 0.9rem; margin: 0;">
+                                        {{ comp.getDescription()|slice(0, 60) }}{% if comp.getDescription()|length > 60 %}...{% endif %}
+                                    </p>
                                 </div>
-                                <small style="color: #94a3b8;">{{ competence.pourcentage }}%</small>
-                            </div>
-                        {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+            </div>
+
+            {% if certifications is not empty %}
+                <div class="projects-grid">
+                    {% for cert in certifications %}
+                        <div class="project-card fade-in">
+                            <div class="project-image" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 3rem;">
+                                {% if cert.getBadge() %}
+                                    <img src="{{ asset('uploads/certifications/' ~ cert.getBadge()) }}" alt="{{ cert.getTitre() }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                {% else %}
+                                    🏆
+                                {% endif %}
+                            </div>
+                            <div class="project-content">
+                                <h4 class="project-title">{{ cert.getTitre() }}</h4>
+                                <p class="timeline-subtitle" style="margin-bottom: 0.5rem;">{{ cert.getOrganisation() }}</p>
+                                {% if cert.getDateObtention() %}
+                                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 1rem;">
+                                        📅 {{ cert.getDateObtention()|date('d/m/Y') }}
+                                    </p>
+                                {% endif %}
+                                <p class="project-desc">
+                                    {{ cert.getDescription() ?? 'Certification obtenue' }}
+                                </p>
+                                <div class="project-links">
+                                    {% if cert.getCertificatFile() %}
+                                        <a href="{{ asset('uploads/certifications/' ~ cert.getCertificatFile()) }}" target="_blank" title="Télécharger le certificat">
+                                            <i class="fas fa-download"></i> Télécharger
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">Aucune certification enregistrée pour le moment.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section class="section" id="projets">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projets Réalisés</h2>
+            </div>
+
+            {% if projets is not empty %}
+                {% set grouped = {} %}
+                {% for proj in projets %}
+                    {% set cat = proj.getCategorie()|default('Autres') %}
+                    {% if not grouped[cat] %}
+                        {% set grouped = grouped|merge({(cat): []}) %}
+                    {% endif %}
+                    {% set grouped = grouped|merge({(cat): grouped[cat]|merge([proj])}) %}
+                {% endfor %}
+
+                {% for categorie, projs in grouped %}
+                    <div class="fade-in" style="margin-bottom: 3rem;">
+                        <h3 style="margin-bottom: 2rem;">📌 {{ categorie }}</h3>
+                        <div class="projects-grid">
+                            {% for proj in projs %}
+                                <div class="project-card">
+                                    <div class="project-image" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);">
+                                        💼
+                                    </div>
+                                    <div class="project-content">
+                                        <h4 class="project-title">{{ proj.getTitre() }}</h4>
+
+                                        {% if proj.getMatiere() %}
+                                            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+                                                📚 {{ proj.getMatiere() }}
+                                            </p>
+                                        {% endif %}
+
+                                        <p class="project-desc">
+                                            {{ proj.getDescription()|slice(0, 120) }}{% if proj.getDescription()|length > 120 %}...{% endif %}
+                                        </p>
+
+                                        <div class="project-links">
+                                            {% if proj.getLinkGithub() %}
+                                                <a href="{{ proj.getLinkGithub() }}" target="_blank" title="Code source">
+                                                    <i class="fab fa-github"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if proj.getLinkDownload() %}
+                                                <a href="{{ proj.getLinkDownload() }}" target="_blank" title="Télécharger">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted">Aucun projet enregistré.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Documents Section -->
+    <section class="section" id="documents">
+        <div class="container">
+            <div class="section-title">
+                <h2>Documents</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+                <!-- Veille Technologique -->
+                <div class="card fade-in">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📰</div>
+                        <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">Veille Technologique</h4>
+                        <p class="text-muted" style="margin-bottom: 1.5rem;">
+                            Découvrez ma sélection des dernières tendances et innovations technologiques
+                        </p>
+                        {% if veilles is not empty %}
+                            <a href="#veille-list" class="btn btn-primary btn-sm">Consulter ({{ veilles|length }} articles)</a>
+                        {% else %}
+                            <p class="text-muted" style="font-size: 0.85rem;">Aucune veille disponible</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- CV et Tableau de Synthèse -->
+                <div class="card fade-in" style="animation-delay: 0.1s;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📄</div>
+                        <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">Ressources</h4>
+                        <p class="text-muted" style="margin-bottom: 1.5rem;">
+                            Téléchargez mon CV et les tableaux de synthèse des projets
+                        </p>
+                        <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+                            <a href="#" class="btn btn-secondary btn-sm" style="color: var(--primary); border-color: var(--primary);">
+                                <i class="fas fa-file-pdf"></i> CV
+                            </a>
+                            <a href="#" class="btn btn-secondary btn-sm" style="color: var(--primary); border-color: var(--primary);">
+                                <i class="fas fa-table"></i> Synthèse Projets
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Veille List -->
+            {% if veilles is not empty %}
+                <div id="veille-list">
+                    <h3 style="margin-bottom: 2rem; font-size: 1.2rem;">Dernières Veilles</h3>
+                    <div class="veille-grid">
+                        {% for veille in veilles %}
+                            <div class="veille-card fade-in">
+                                <div class="veille-icon">📚</div>
+                                <h5 class="veille-title">{{ veille.getTitre() }}</h5>
+
+                                {% if veille.getCategorie() %}
+                                    <div style="margin-bottom: 0.75rem;">
+                                        <span class="skill-badge" style="font-size: 0.7rem;">{{ veille.getCategorie() }}</span>
+                                    </div>
+                                {% endif %}
+
+                                <p class="veille-desc">
+                                    {{ veille.getDescription()|slice(0, 120) }}{% if veille.getDescription()|length > 120 %}...{% endif %}
+                                </p>
+
+                                <div class="veille-meta">
+                                    <span style="font-size: 0.8rem;">{{ veille.getDate()|date('d/m/Y') }}</span>
+                                    <div style="display: flex; gap: 0.5rem;">
+                                        {% if veille.getPdfFile() %}
+                                            <a href="{{ asset('uploads/veille/' ~ veille.getPdfFile()) }}" target="_blank" class="btn btn-sm btn-primary" title="PDF">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </a>
+                                        {% endif %}
+                                        {% if veille.getUrl() %}
+                                            <a href="{{ veille.getUrl() }}" target="_blank" class="btn btn-sm btn-secondary" style="color: var(--primary); border-color: var(--primary);" title="Lien">
+                                                <i class="fas fa-link"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <div class="fade-in">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Me contacter</h3>
+                    {% if app.flashes %}
+                        {% for flash_type, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ flash_type == 'success' ? 'success' : 'error' }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="contact-section" style="margin-bottom: 0;">
+                        {{ form_start(form) }}
+
+                            <div class="form-group">
+                                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-input'}}) }}
+                                {{ form_errors(form.nom) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.prenom, {'attr': {'class': 'form-input'}}) }}
+                                {{ form_errors(form.prenom) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.email, {'attr': {'class': 'form-input'}}) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.sujet, 'Sujet', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.sujet, {'attr': {'class': 'form-input'}}) }}
+                                {{ form_errors(form.sujet) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.message, {'attr': {'class': 'form-textarea'}}) }}
+                                {{ form_errors(form.message) }}
+                            </div>
+
+                            <div style="margin-top: 2rem;">
+                                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary', 'style': 'width: 100%; justify-content: center;'}}) }}
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.2s;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Me suivre</h3>
+                    <p class="text-muted" style="margin-bottom: 2rem;">
+                        Retrouvez-moi sur les réseaux sociaux et plateformes professionnelles
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <a href="https://github.com" target="_blank" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
+                            <i class="fab fa-github" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);"></i>
+                            <h5 style="font-size: 0.95rem; margin: 0;">GitHub</h5>
+                        </a>
+
+                        <a href="https://linkedin.com" target="_blank" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
+                            <i class="fab fa-linkedin" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);"></i>
+                            <h5 style="font-size: 0.95rem; margin: 0;">LinkedIn</h5>
+                        </a>
+
+                        <a href="mailto:jingyuan@example.com" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
+                            <i class="fas fa-envelope" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);"></i>
+                            <h5 style="font-size: 0.95rem; margin: 0;">Email</h5>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section id="contact" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; text-align: center;">
-        <div class="container">
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" class="reveal" style="animation-delay: 0.2s;">
-                <a href="{{ path('app_contact_index') }}" class="btn" style="background: white; color: #3b82f6; font-weight: 600;">
-                    ✉️ Me contacter
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="btn" style="border: 2px solid white; color: white;">
-                    💼 LinkedIn
-                </a>
-                <a href="https://github.com" target="_blank" class="btn" style="border: 2px solid white; color: white;">
-                    🐙 GitHub
-                </a>
-            </div>
-        </div>
-    </section>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && document.querySelector(href)) {
+                        e.preventDefault();
+                        document.querySelector(href).scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Tab management for navbar links (bootstrap tabs)
+            const navbarLinks = document.querySelectorAll('nav .navbar-nav a[href*="#"]');
+            navbarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    const match = href.match(/#([^&?]+)/);
+                    if (match && match[1]) {
+                        const targetId = match[1];
+                        // If a tab toggle exists, activate it
+                        const tabElement = document.querySelector('[data-bs-toggle="tab"][href="#' + targetId + '"]');
+                        if (tabElement) {
+                            e.preventDefault();
+                            const tab = new bootstrap.Tab(tabElement);
+                            tab.show();
+                            const tabsNav = document.querySelector('.portfolio-tabs-nav');
+                            if (tabsNav) {
+                                tabsNav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Reveal animation on scroll for .fade-in and .reveal
+            const revealElements = document.querySelectorAll('.fade-in, .reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Active navigation highlight
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.style.color = '';
+                    link.style.borderBottomColor = 'transparent';
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.style.color = 'var(--primary)';
+                        link.style.borderBottomColor = 'var(--primary)';
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+
+

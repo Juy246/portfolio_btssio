@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\CertificationRepository;
 use App\Repository\CompetenceRepository;
 use App\Repository\ContactRepository;
 use App\Repository\ExperienceRepository;
@@ -24,6 +25,7 @@ final class HomeController extends AbstractController
         CompetenceRepository $competenceRepository,
         ProjetRepository $projetRepository,
         VeilleRepository $veilleRepository,
+        CertificationRepository $certificationRepository,
         ContactRepository $contactRepository,
         EntityManagerInterface $em,
     ): Response
@@ -46,6 +48,7 @@ final class HomeController extends AbstractController
             'competences' => $competenceRepository->findAll(),
             'projets' => $projetRepository->findAll(),
             'veilles' => $veilleRepository->findAll(),
+            'certifications' => $certificationRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }

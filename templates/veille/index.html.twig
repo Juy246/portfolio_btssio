@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Veille Technologique - Portfolio{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-5 text-center">Veille Technologique</h1>
+
+        {% if veilles is not empty %}
+            <div class="row">
+                {% for veille in veilles %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                                    <h5 class="card-title fw-bold" style="margin: 0;">{{ veille.getTitre() }}</h5>
+                                    {% if veille.getCategorie() %}
+                                        <span class="badge bg-primary">{{ veille.getCategorie() }}</span>
+                                    {% endif %}
+                                </div>
+
+                                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">
+                                     {{ veille.getDate()|date('d/m/Y') }}
+                                </p>
+
+                                <p class="card-text text-muted" style="margin-bottom: 1.5rem;">
+                                    {{ veille.getDescription()|slice(0, 200) }}{% if veille.getDescription()|length > 200 %}...{% endif %}
+                                </p>
+
+                                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    {% if veille.getUrl() %}
+                                        <a href="{{ veille.getUrl() }}" target="_blank" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-link"></i> Lire l'article
+                                        </a>
+                                    {% endif %}
+                                    {% if veille.getPdfFile() %}
+                                        <a href="{{ asset('uploads/veille/' ~ veille.getPdfFile()) }}" target="_blank" download class="btn btn-sm btn-primary">
+                                            <i class="fas fa-file-pdf"></i> PDF
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted text-center">Aucune veille enregistrée.</p>
+        {% endif %}
+
+        <div class="text-center mt-5">
+            <a href="{{ path('app_home') }}" class="btn btn-primary">
+                ← Retour à l'accueil
+            </a>
+        </div>
+    </div>
+{% endblock %}
+

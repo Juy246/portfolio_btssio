@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compétences - Portfolio{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-5 text-center">Mes Compétences</h1>
+
+        {% if grouped_competences is not empty %}
+            {% for categorie, competences in grouped_competences %}
+                <section class="mb-5">
+                    <h2 class="border-bottom pb-2 mb-4">
+                        {% if categorie == 'Backend' %}
+                            🔧
+                        {% elseif categorie == 'Frontend' %}
+                            🎨
+                        {% elseif categorie == 'Database' or categorie == 'Bases de données' %}
+                            🗄️
+                        {% else %}
+                            ⚙️
+                        {% endif %}
+                        {{ categorie }}
+                    </h2>
+
+                    <div class="row">
+                        {% for comp in competences %}
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">{{ comp.getNom() }}</h5>
+                                        <p class="card-text text-muted">{{ comp.getDescription() }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted text-center">Aucune compétence enregistrée.</p>
+        {% endif %}
+
+        <div class="text-center mt-5">
+            <a href="{{ path('app_home') }}" class="btn btn-primary">
+                ← Retour à l'accueil
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
