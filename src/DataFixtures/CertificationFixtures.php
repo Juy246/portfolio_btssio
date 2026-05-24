@@ -18,6 +18,7 @@ class CertificationFixtures extends Fixture
                 'certificat_file' => 'certification-pix.pdf',
                 'badge' => null,
                 'url' => 'https://app.pix.fr/verification-certificat',
+                'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
                 'dateObtention' => '2026',
             ],
             [
@@ -28,6 +29,7 @@ class CertificationFixtures extends Fixture
                 'badge' => 'https://www.credly.com/badges/bb2d706b-116e-4a85-bece-a811d8c303b0',
                 'url' => 'https://www.credly.com/badges/bb2d706b-116e-4a85-bece-a811d8c303b0/linked_in_profile',
                 'dateObtention' => '2025',
+                'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
             ],
             [
                 'titre' => 'Introduction à la Cybersécurité',
@@ -37,6 +39,7 @@ class CertificationFixtures extends Fixture
                 'badge' => 'https://www.credly.com/badges/224b2330-8d65-40bd-9ed5-d330c70adf02',
                 'url' => 'https://www.credly.com/badges/224b2330-8d65-40bd-9ed5-d330c70adf02/linked_in_profile',
                 'dateObtention' => '2025',
+                'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
             ],
         ];
 
