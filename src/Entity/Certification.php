@@ -35,6 +35,9 @@ class Certification
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\Column(length: 500, nullable: true)]
+    private ?string $url = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -117,6 +120,17 @@ class Certification
         return $this;
     }
 
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): static
+    {
+        $this->url = $url;
+        return $this;
+    }
+
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
@@ -125,4 +139,3 @@ class Certification
         }
     }
 }
-
