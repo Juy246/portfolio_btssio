@@ -29,7 +29,7 @@
                 <div class="fade-in">
                     <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary);">Présentation personnelle</h3>
                     <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-                        Bonjour, Je m'appelle Jingyuan LUO, étudiant en formation BTS SIO spécialité SLAM (Solutions Logicielles et Applications Métier).
+                        Bonjour, je m'appelle Jingyuan LUO, étudiant en formation BTS SIO spécialité SLAM (Solutions Logicielles et Applications Métier).
                     </p>
                     <p style="margin-bottom: 1.5rem;">
                         Passionné par l'analyse de besoin, l'analyse de données et le développement de solutions technologiques innovantes,
@@ -48,7 +48,7 @@
                             de 2 ans qui prépare les étudiants aux métiers de l'informatique, avec une spécialité SLAM
                             (développement de solutions logicielles).
                         </p>
-                        <div style="border-top: 1px solid var(--border); padding-top: 1rem; text-align: left;">
+                                <div style="border-top: 1px solid var(--border); padding-top: 1rem; text-align: left;">
                             <p><strong>📚 Formé à :</strong></p>
                             <ul style="list-style: none; margin-top: 0.5rem;">
                                 <li>✓ Analyse et conception d'applications</li>
@@ -67,7 +67,7 @@
     <section class="section" id="parcours">
         <div class="container">
             <div class="section-title">
-                <h2>Parcours</h2>
+                <h2>Expériences</h2>
             </div>
 
             {% if experiences is not empty %}
@@ -85,7 +85,7 @@
                 <!-- Formations -->
                 {% if formations is not empty %}
                     <div style="margin-bottom: 4rem;">
-                        <h3 style="margin-bottom: 2rem; font-size: 1.25rem; color: var(--primary);">📚 Scolarité</h3>
+                        <h3 style="margin-bottom: 2rem; font-size: 1.25rem; color: var(--primary);">📚 Formations</h3>
                         <div class="timeline">
                             {% for form in formations %}
                                 <div class="timeline-item fade-in">
@@ -97,9 +97,16 @@
                                             {{ form.getCompany() }}
                                             {% if form.getLocation() %} • {{ form.getLocation() }}{% endif %}
                                         </p>
-                                        {% if form.getDescription() %}
-                                            <p class="timeline-desc">{{ form.getDescription() }}</p>
-                                        {% endif %}
+                                                                                {% if form.getDescription() %}
+                                                                                    {% set items = form.getDescription()|split("\n") %}
+                                                                                    <ul class="timeline-desc" style="padding-left: 1rem; margin: 0; text-align: justify;">
+                                                                                        {% for it in items %}
+                                                                                            {% if it|trim != '' %}
+                                                                                                <li style="margin-bottom: 0.25rem; color: var(--text-light);">{{ it }}</li>
+                                                                                            {% endif %}
+                                                                                        {% endfor %}
+                                                                                    </ul>
+                                                                                {% endif %}
                                     </div>
                                 </div>
                             {% endfor %}
@@ -110,7 +117,7 @@
                 <!-- Expériences Professionnelles -->
                 {% if professionnels is not empty %}
                     <div>
-                        <h3 style="margin-bottom: 2rem; font-size: 1.25rem; color: var(--primary);">💼 Expérience Professionnelle</h3>
+                        <h3 style="margin-bottom: 2rem; font-size: 1.25rem; color: var(--primary);">💼 Expériences Professionnelles</h3>
                         <div class="timeline">
                             {% for exp in professionnels %}
                                 <div class="timeline-item fade-in">
@@ -123,7 +130,14 @@
                                             {% if exp.getLocation() %} • {{ exp.getLocation() }}{% endif %}
                                         </p>
                                         {% if exp.getDescription() %}
-                                            <p class="timeline-desc">{{ exp.getDescription() }}</p>
+                                            {% set items = exp.getDescription()|split("\n") %}
+                                            <ul class="timeline-desc" style="padding-left: 1rem; margin: 0; text-align: justify;">
+                                                {% for it in items %}
+                                                    {% if it|trim != '' %}
+                                                        <li style="margin-bottom: 0.25rem; color: var(--text-light);">{{ it }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
                                         {% endif %}
 
                                         {% if exp.getSkills()|length > 0 %}
@@ -202,9 +216,23 @@
                 <div class="projects-grid">
                     {% for cert in certifications %}
                         <div class="project-card fade-in">
-                            <div class="project-image" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 3rem;">
-                                {% if cert.getBadge() %}
-                                    <img src="{{ asset('uploads/certifications/' ~ cert.getBadge()) }}" alt="{{ cert.getTitre() }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="project-image" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); font-size: 3rem; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                {# If a badge image filename is set, try to display it (admin may store badges under uploads/...)
+                                   Otherwise, if a PDF certificate file exists, show a small embedded preview of the PDF.
+                                   Fallback to the trophy emoji when no visual file is available. #}
+                                {% if cert.getBadge() is not null and cert.getBadge() != '' %}
+                                    <img src="{{ asset('uploads/certifications/' ~ cert.getBadge()) }}" alt="{{ cert.getTitre() }}" style="max-width:100%; max-height:120px; object-fit:contain;">
+                                {% elseif cert.getCertificatFile() is not null and cert.getCertificatFile() != '' %}
+                                    {# Afficher une vignette cliquable pour le PDF ; si une miniature (png) existe sous public/certifications/thumbnails/, elle sera affichée, sinon on verra un placeholder PDF #}
+                                    <a href="{{ asset('certifications/' ~ cert.getCertificatFile()) }}" target="_blank" style="display:block; width:100%; height:120px;">
+                                        <div style="position:relative; width:100%; height:120px; overflow:hidden; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);">
+                                            <img src="{{ asset('certifications/thumbnails/' ~ cert.getCertificatFile()|replace({'.pdf': '.png', '.PDF': '.png'})) }}" alt="{{ cert.getTitre() }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none';">
+                                            <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:center; width:100%; height:100%; color:#fff;">
+                                                <i class="fas fa-file-pdf" style="font-size:2rem; margin-right:0.5rem;"></i>
+                                                <span>PDF</span>
+                                            </div>
+                                        </div>
+                                    </a>
                                 {% else %}
                                     🏆
                                 {% endif %}
@@ -222,8 +250,17 @@
                                 </p>
                                 <div class="project-links">
                                     {% if cert.getCertificatFile() %}
-                                        <a href="{{ asset('uploads/certifications/' ~ cert.getCertificatFile()) }}" target="_blank" title="Télécharger le certificat">
-                                            <i class="fas fa-download"></i> Télécharger
+                                        <a href="{{ asset('certifications/' ~ cert.getCertificatFile()) }}" target="_blank" title="Ouvrir / Télécharger le certificat">
+                                            <i class="fas fa-file-pdf"></i> Ouvrir
+                                        </a>
+                                        <a href="{{ asset('certifications/' ~ cert.getCertificatFile()) }}" download style="margin-left:0.5rem;">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                    {% endif %}
+
+                                    {% if cert.getUrl() %}
+                                        <a href="{{ cert.getUrl() }}" target="_blank" class="btn-link" title="Vérifier la certification" style="margin-left:0.75rem;">
+                                            <i class="fas fa-external-link-alt"></i> Vérifier
                                         </a>
                                     {% endif %}
                                 </div>
@@ -248,10 +285,9 @@
                 {% set grouped = {} %}
                 {% for proj in projets %}
                     {% set cat = proj.getCategorie()|default('Autres') %}
-                    {% if not grouped[cat] %}
-                        {% set grouped = grouped|merge({(cat): []}) %}
-                    {% endif %}
-                    {% set grouped = grouped|merge({(cat): grouped[cat]|merge([proj])}) %}
+                    {# Use default([]) when accessing grouped[cat] to avoid "key does not exist" errors #}
+                    {% set existing = grouped[cat]|default([]) %}
+                    {% set grouped = grouped|merge({ (cat): existing|merge([proj]) }) %}
                 {% endfor %}
 
                 {% for categorie, projs in grouped %}
@@ -330,14 +366,22 @@
                         <div style="font-size: 3rem; margin-bottom: 1rem;">📄</div>
                         <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">Ressources</h4>
                         <p class="text-muted" style="margin-bottom: 1.5rem;">
-                            Téléchargez mon CV et les tableaux de synthèse des projets
                         </p>
-                        <div style="display: flex; gap: 0.5rem; flex-direction: column;">
-                            <a href="#" class="btn btn-secondary btn-sm" style="color: var(--primary); border-color: var(--primary);">
-                                <i class="fas fa-file-pdf"></i> CV
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                            <a href="{{ asset('documents/CV_Jingyuan_LUO_Alternance.pdf') }}" target="_blank" class="card" style="text-align: left; padding: 1rem; display:flex; gap:0.75rem; align-items:center;">
+                                <div style="font-size: 1.75rem; color: var(--primary);">📄</div>
+                                <div>
+                                    <div style="font-weight:600;">CV</div>
+                                    <div style="font-size:0.85rem; color:var(--text-light);">Télécharger mon CV</div>
+                                </div>
                             </a>
-                            <a href="#" class="btn btn-secondary btn-sm" style="color: var(--primary); border-color: var(--primary);">
-                                <i class="fas fa-table"></i> Synthèse Projets
+
+                            <a href="{{ asset('documents/Tableau-de-synthese-Epreuve-E5-Jingyuan-LUO.pdf') }}" target="_blank" class="card" style="text-align: left; padding: 1rem; display:flex; gap:0.75rem; align-items:center;">
+                                <div style="font-size: 1.75rem; color: var(--primary);">📊</div>
+                                <div>
+                                    <div style="font-weight:600;">Tableau de synthèse - E5</div>
+                                    <div style="font-size:0.85rem; color:var(--text-light);">Télécharger le tableau de synthèse</div>
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -454,7 +498,7 @@
                     </p>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <a href="https://github.com" target="_blank" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
+                        <a href="https://github.com/Juy246" target="_blank" class="card" style="text-align: center; padding: 1.5rem; transition: all 0.3s ease; border: 1px solid var(--border);">
                             <i class="fab fa-github" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);"></i>
                             <h5 style="font-size: 0.95rem; margin: 0;">GitHub</h5>
                         </a>
@@ -494,25 +538,48 @@
                 });
             });
 
-            // Tab management for navbar links (bootstrap tabs)
+            // Tab management for navbar links (robust): try multiple selectors to find a bootstrap tab toggle
             const navbarLinks = document.querySelectorAll('nav .navbar-nav a[href*="#"]');
             navbarLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    const match = href.match(/#([^&?]+)/);
-                    if (match && match[1]) {
-                        const targetId = match[1];
-                        // If a tab toggle exists, activate it
-                        const tabElement = document.querySelector('[data-bs-toggle="tab"][href="#' + targetId + '"]');
-                        if (tabElement) {
-                            e.preventDefault();
+                    const match = href && href.match(/#([^&?]+)/);
+                    if (!match || !match[1]) return;
+                    const targetId = match[1];
+
+                    // Look for different possible tab toggles that reference the target id
+                    const selectors = [
+                        `[data-bs-toggle="tab"][href="#${targetId}"]`,
+                        `[data-bs-toggle="tab"][data-bs-target="#${targetId}"]`,
+                        `[role="tab"][data-bs-target="#${targetId}"]`,
+                        `[role="tab"][href="#${targetId}"]`,
+                        `[data-toggle="tab"][href="#${targetId}"]`,
+                        `[data-toggle="tab"][data-target="#${targetId}"]`
+                    ];
+
+                    let tabElement = null;
+                    for (const sel of selectors) {
+                        tabElement = document.querySelector(sel);
+                        if (tabElement) break;
+                    }
+
+                    if (tabElement && typeof bootstrap !== 'undefined' && bootstrap.Tab) {
+                        // Prevent default anchor jump, activate the tab and scroll
+                        e.preventDefault();
+                        try {
                             const tab = new bootstrap.Tab(tabElement);
                             tab.show();
-                            const tabsNav = document.querySelector('.portfolio-tabs-nav');
-                            if (tabsNav) {
-                                tabsNav.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
+                        } catch (err) {
+                            // ignore
                         }
+
+                        // If there's a nav section for tabs, scroll to it; otherwise, scroll to the anchor target
+                        const tabsNav = document.querySelector('.portfolio-tabs-nav') || document.getElementById(targetId);
+                        if (tabsNav) {
+                            tabsNav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    } else {
+                        // No tab toggle found: let the normal anchor behaviour (smooth scroll) handle it
                     }
                 });
             });

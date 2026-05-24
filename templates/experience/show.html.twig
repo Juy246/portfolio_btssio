@@ -47,9 +47,16 @@
                 <!-- Description -->
                 <div style="margin-bottom: 2rem;">
                     <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">Description</h3>
-                    <p style="color: #64748b; line-height: 1.8; font-size: 1.05rem;">
-                        {{ experience.description }}
-                    </p>
+                    {% if experience.description %}
+                        {% set items = experience.description|split("\n") %}
+                        <ul style="color: #64748b; line-height: 1.8; font-size: 1.05rem; padding-left: 1rem; text-align: justify;">
+                            {% for it in items %}
+                                {% if it|trim != '' %}
+                                    <li style="margin-bottom: 0.5rem;">{{ it }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
 
                 <!-- Competences -->
