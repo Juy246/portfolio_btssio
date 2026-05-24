@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class VeilleController extends AbstractController
 {
-    #[Route('/veille', name: 'app_veille_index')]
+    #[Route('/documents', name: 'app_veille_index')]
     public function index(VeilleRepository $veilleRepository): Response
     {
         $veilles = $veilleRepository->findBy([], ['date' => 'DESC']);
