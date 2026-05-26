@@ -232,15 +232,23 @@ nav a:hover::after {
    6️⃣ HERO SECTION
    ============================================ */
 .hero {
-  /* Reserve space for the sticky header so the hero appears truly centered
-     even when the header is present. Adjust the value if your header height changes. */
-  min-height: calc(100vh - 72px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding: 4rem 0;
+   /* Reserve space for the sticky header so the hero appears truly centered
+      even when the header is present. Adjust the value if your header height changes. */
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   overflow: hidden;
+   padding: 4rem 0;
+   width: 100%;
+}
+
+.hero .container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
 }
 
 .hero-bg {
@@ -278,10 +286,11 @@ nav a:hover::after {
 }
 
 .hero-content {
-  position: relative;
-  text-align: center;
-  max-width: 800px;
-  z-index: 10;
+   position: relative;
+   text-align: center;
+   max-width: 800px;
+   z-index: 10;
+   margin: 0 auto;
 }
 
 .hero h1 {
@@ -821,8 +830,48 @@ nav a:hover::after {
 }
 
 /* ============================================
-   1️⃣4️⃣ CONTACT FORM
+   GRIDS FOR SECTIONS
    ============================================ */
+.about-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 3rem;
+   align-items: center;
+}
+
+.documents-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 2rem;
+   margin-bottom: 3rem;
+}
+
+.contact-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 3rem;
+   align-items: start;
+}
+
+@media (max-width: 768px) {
+   .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
+
+   .documents-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
+
+   .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
+}
+
+
+
 .contact-section {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
@@ -946,59 +995,114 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
-  }
+   .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
 
-  .section {
-    padding: 2rem 0;
-  }
+   .about-grid .card {
+      padding: 1.5rem;
+   }
 
-  h1 {
-    font-size: 2rem;
-  }
+   .about-grid h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+   }
 
-  h2 {
-    font-size: 1.5rem;
-  }
+   .about-grid p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+   }
 
-  .hero {
-    min-height: auto;
-    padding: 3rem 0;
-  }
+   .documents-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
 
-  .hero h1 {
-    font-size: 2rem;
-  }
+   .documents-grid .card {
+      padding: 1.5rem;
+   }
 
-  .hero .subtitle {
-    font-size: 1rem;
-  }
+   .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
 
-  .hero-cta {
-    flex-direction: column;
-  }
+   .contact-section {
+      padding: 2rem 1rem;
+   }
 
-  .hero-cta .btn {
-    width: 100%;
-    justify-content: center;
-  }
+   .form-group {
+      margin-bottom: 1rem;
+   }
 
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+   .contact-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+   .container {
+     padding: 0 1rem;
+   }
 
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+   .section {
+     padding: 2rem 0;
+   }
 
-  .contact-section {
-    padding: 2rem 1rem;
-  }
+   h1 {
+     font-size: 2rem;
+   }
+
+   h2 {
+     font-size: 1.5rem;
+   }
+
+   h3 {
+      font-size: 1.1rem;
+   }
+
+   h4 {
+      font-size: 1rem;
+   }
+
+   p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+   }
+
+   .hero {
+     min-height: auto;
+     padding: 3rem 0;
+   }
+
+   .hero h1 {
+     font-size: 2rem;
+   }
+
+   .hero .subtitle {
+     font-size: 1rem;
+   }
+
+   .hero-cta {
+     flex-direction: column;
+   }
+
+   .hero-cta .btn {
+     width: 100%;
+     justify-content: center;
+   }
+
+   .skills-grid {
+     grid-template-columns: repeat(2, 1fr);
+   }
+
+   .projects-grid {
+     grid-template-columns: 1fr;
+   }
+
+   .stats-grid {
+     grid-template-columns: 1fr;
+   }
 }
 
 @media (max-width: 480px) {
