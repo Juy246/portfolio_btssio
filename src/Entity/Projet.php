@@ -18,9 +18,6 @@ class Projet
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $matiere = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
@@ -36,6 +33,9 @@ class Projet
     #[ORM\Column(length: 255)]
     private ?string $categorie = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_projet = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,18 +49,6 @@ class Projet
     public function setTitre(string $titre): static
     {
         $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getMatiere(): ?string
-    {
-        return $this->matiere;
-    }
-
-    public function setMatiere(string $matiere): static
-    {
-        $this->matiere = $matiere;
 
         return $this;
     }
@@ -121,6 +109,18 @@ class Projet
     public function setCategorie(string $categorie): static
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getImageProjet(): ?string
+    {
+        return $this->image_projet;
+    }
+
+    public function setImageProjet(string $image_projet): static
+    {
+        $this->image_projet = $image_projet;
 
         return $this;
     }
