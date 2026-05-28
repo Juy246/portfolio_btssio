@@ -323,7 +323,7 @@
                                                 </a>
                                             {% endif %}
                                             {% if proj.getDocumentFile() %}
-                                                <a href="{{ asset('projets/' ~ proj.getDocumentFile()) }}" target="_blank" title="Télécharger le document">
+                                                <a href="{{ asset(proj.getDocumentFile()) }}" target="_blank" title="Télécharger le document">
                                                     <i class="fas fa-download"></i>
                                                 </a>
                                             {% endif %}
