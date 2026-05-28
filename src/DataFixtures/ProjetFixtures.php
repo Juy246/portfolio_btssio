@@ -40,6 +40,7 @@ Le projet vise à digitaliser entièrement le processus administratif grâce à 
 L’objectif est de générer des liens temporaires vers des fichiers hébergés sur des serveurs exposés à l’extérieur afin de faciliter leur transmission sécurisée par email aux destinataires.",
                 'linkGithub' => '',
                 'linkDownload' => 'projets/DAT-ShareBusiness-Jingyuan_LUO.odt',
+                'document_file' => 'projets/Document-utilisation_ShareBusiness_Jingyuan_LUO.pdf'
             ],
 
         ];
@@ -54,6 +55,11 @@ L’objectif est de générer des liens temporaires vers des fichiers hébergés
             $project->setDescription($data['description']);
             $project->setLinkGithub($data['linkGithub']);
             $project->setLinkDownload($data['linkDownload']);
+
+            // Setter le document_file s'il existe
+            if (isset($data['document_file'])) {
+                $project->setDocumentFile($data['document_file']);
+            }
 
             $manager->persist($project);
         }

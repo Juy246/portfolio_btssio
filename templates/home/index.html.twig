@@ -34,7 +34,7 @@
                     <p style="margin-bottom: 1.5rem;">
                         Passionnée par les nouvelles technologies, l’analyse des besoins et le développement de solutions numériques,
                         je conçois des applications fiables et performantes à l’aide de technologies modernes.
-                        Curieuse, rigoureuse et dotée d’une bonne capacité d’adaptation,j’apprécie le travail en équipe ainsi que la résolution
+                        Curieuse, rigoureuse et dotée d’une bonne capacité d’adaptation, j’apprécie le travail en équipe ainsi que la résolution
                         de problématiques techniques concrètes.
                     </p>
                     <p style="margin-bottom: 1.5rem;">
@@ -192,7 +192,7 @@
                                 🔧
                             {% elseif categorie == 'Frontend' %}
                                 🎨
-                            {% elseif categorie == 'Database' or categorie == 'Bases de données' %}
+                            {% elseif categorie == 'Gestion de bases de données et requêtes' %}
                                 🗄️
                             {% else %}
                                 ⚙️
@@ -256,11 +256,8 @@
                                 </p>
                                 <div class="project-links">
                                     {% if cert.getCertificatFile() %}
-                                        <a href="{{ asset('certifications/' ~ cert.getCertificatFile()) }}" target="_blank" title="Ouvrir / Télécharger le certificat">
-                                            <i class="fas fa-file-pdf"></i> Ouvrir
-                                        </a>
                                         <a href="{{ asset('certifications/' ~ cert.getCertificatFile()) }}" download style="margin-left:0.5rem;">
-                                            <i class="fas fa-download"></i>
+                                            <i class="fas fa-download"> Télécharger le certification</i>
                                         </a>
                                     {% endif %}
 
@@ -308,11 +305,6 @@
                                     <div class="project-content">
                                         <h4 class="project-title">{{ proj.getTitre() }}</h4>
 
-                                        {% if proj.getMatiere() %}
-                                            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                                📚 {{ proj.getMatiere() }}
-                                            </p>
-                                        {% endif %}
 
                                         <p class="project-desc">
                                             {{ proj.getDescription() }}
@@ -325,7 +317,12 @@
                                                 </a>
                                             {% endif %}
                                             {% if proj.getLinkDownload() %}
-                                                <a href="{{ proj.getLinkDownload() }}" target="_blank" title="Télécharger">
+                                                <a href="{{ proj.getLinkDownload() }}" target="_blank" title="Télécharger le document">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if proj.getDocumentFile() %}
+                                                <a href="{{ asset('projets/' ~ proj.getDocumentFile()) }}" target="_blank" title="Télécharger le document">
                                                     <i class="fas fa-download"></i>
                                                 </a>
                                             {% endif %}

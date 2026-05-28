@@ -66,7 +66,7 @@ class ExperienceFixtures extends Fixture
             ],
 
             [
-                'title' => 'Licence LEA - Anglais Chinois',
+                'title' => 'Licence Langues Etrangères Appliquées',
                 'company' => 'Université Grenoble Alpes',
                 'location' => 'Grenoble, Isère (France)',
                 'startDate' => new \DateTime('2019-09-01'),
@@ -99,7 +99,7 @@ class ExperienceFixtures extends Fixture
             [
                 'title' => 'Bénévole',
                 'company' => 'Festival international du film d\'animation d\'Annecy',
-                'location' => 'Annecy, Haute-Savoie',
+                'location' => 'Annecy, Haute-Savoie (France)',
                 'startDate' => new \DateTime('2021-06-01'),
                 'endDate' => new \DateTime('2021-06-30'),
                 'type' => 'associatif',

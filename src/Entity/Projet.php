@@ -30,6 +30,9 @@ class Projet
     #[ORM\Column(length: 255)]
     private ?string $link_download = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $document_file = null;
+
     #[ORM\Column(length: 255)]
     private ?string $categorie = null;
 
@@ -94,6 +97,18 @@ class Projet
     public function setLinkDownload(string $link_download): static
     {
         $this->link_download = $link_download;
+
+        return $this;
+    }
+
+    public function getDocumentFile(): ?string
+    {
+        return $this->document_file;
+    }
+
+    public function setDocumentFile(?string $document_file): static
+    {
+        $this->document_file = $document_file;
 
         return $this;
     }
