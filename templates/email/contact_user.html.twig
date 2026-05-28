@@ -1,0 +1,16 @@
+<h2>Confirmation de réception</h2>
+
+<p>Bonjour {{ contact.prenom }} {{ contact.nom }},</p>
+
+<p>Merci de votre message!</p>
+
+<hr>
+
+<h3>Résumé de votre demande:</h3>
+<ul>
+    <li><strong>Sujet:</strong> {{ contact.sujet }}</li>
+    <li><strong>Date:</strong> {{ contact.createdAt|date('d/m/Y à H:i') }}</li>
+</ul>
+
+<hr>
+

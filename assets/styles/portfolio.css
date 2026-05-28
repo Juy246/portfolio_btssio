@@ -1264,3 +1264,69 @@ html {
   color: white;
 }
 
+
+/* ============================================
+   CONTACT NOTIFICATION TOAST
+   ============================================ */
+.contact-notification {
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   padding: 1.25rem 1.5rem;
+   border-radius: 0.75rem;
+   font-weight: 600;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   z-index: 2000;
+   animation: slideInRight 0.3s ease-out;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+   max-width: 90%;
+   word-wrap: break-word;
+}
+
+.contact-notification.success {
+   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+   color: white;
+   border: 1px solid #059669;
+}
+
+.contact-notification.error {
+   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+   color: white;
+   border: 1px solid #dc2626;
+}
+
+#notification-message {
+   flex-grow: 1;
+   font-size: 0.95rem;
+   line-height: 1.4;
+}
+
+.notification-close {
+   background: none;
+   border: none;
+   color: white;
+   font-size: 1.5rem;
+   cursor: pointer;
+   padding: 0;
+   line-height: 1;
+   transition: transform var(--transition);
+   flex-shrink: 0;
+}
+
+.notification-close:hover {
+   transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+   .contact-notification {
+      top: auto;
+      bottom: 20px;
+      left: 10px;
+      right: 10px;
+      max-width: unset;
+   }
+}
+

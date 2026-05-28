@@ -469,12 +469,8 @@
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Me contacter</h3>
 
                     <div class="contact-section" style="margin-bottom: 0;">
-                        <form id="contact-form" class="contact-form" method="POST" action="{{ path('app_contact_send') }}" enctype="multipart/form-data">
-                            <input type="hidden" name="contact[nom]" id="contact_nom" class="form-input">
-                            <input type="hidden" name="contact[prenom]" id="contact_prenom" class="form-input">
-                            <input type="hidden" name="contact[email]" id="contact_email" class="form-input">
-                            <input type="hidden" name="contact[sujet]" id="contact_sujet" class="form-input">
-                            <input type="hidden" name="contact[message]" id="contact_message" class="form-textarea">
+                        <form id="contact-form" class="contact-form" method="POST" action="{{ path('app_contact_send') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('contact_form') }}">
 
                             <div class="form-group">
                                 <label class="form-label" for="nom">Nom</label>
