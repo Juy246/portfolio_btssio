@@ -25,19 +25,16 @@ class Certification
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $badge = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $certificatFile = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateObtention = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
-
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $url = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_file = null;
 
     public function getId(): ?int
     {
@@ -77,17 +74,6 @@ class Certification
         return $this;
     }
 
-    public function getBadge(): ?string
-    {
-        return $this->badge;
-    }
-
-    public function setBadge(?string $badge): static
-    {
-        $this->badge = $badge;
-        return $this;
-    }
-
     public function getCertificatFile(): ?string
     {
         return $this->certificatFile;
@@ -110,17 +96,6 @@ class Certification
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
     public function getUrl(): ?string
     {
         return $this->url;
@@ -132,11 +107,15 @@ class Certification
         return $this;
     }
 
-    #[ORM\PrePersist]
-    public function setCreatedAtValue(): void
+    public function getImageFile(): ?string
     {
-        if ($this->createdAt === null) {
-            $this->createdAt = new \DateTime();
-        }
+        return $this->image_file;
     }
+
+    public function setImageFile(?string $image_file): static
+    {
+        $this->image_file = $image_file;
+        return $this;
+    }
+
 }
