@@ -11,32 +11,30 @@
                 <section class="mb-5">
                     <h2 class="border-bottom pb-2 mb-4"> {{ categorie }}</h2>
 
-                    <div class="row">
+                    <div class="projects-grid">
                         {% for proj in projets %}
-                            <div class="col-md-6 mb-4">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold">{{ proj.getTitre() }}</h5>
-                                        {% if proj.getMatiere() %}
-                                            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">
-                                                 {{ proj.getMatiere() }}
-                                            </p>
+                            <div class="project-card">
+                                {% if proj.getImageProjet() %}
+                                    <div class="project-image">
+                                        <img src="{{ asset('images/projets/' ~ proj.getImageProjet()) }}" alt="{{ proj.getTitre() }}" />
+                                    </div>
+                                {% endif %}
+                                <div class="project-content">
+                                    <h5 class="project-title">{{ proj.getTitre() }}</h5>
+                                    <p class="project-desc">
+                                        {{ proj.getDescription() }}
+                                    </p>
+                                    <div class="project-links">
+                                        {% if proj.getLinkGithub() %}
+                                            <a href="{{ proj.getLinkGithub() }}" target="_blank" title="Voir le code">
+                                                <i class="fab fa-github"></i> Code
+                                            </a>
                                         {% endif %}
-                                        <p class="card-text text-muted" style="margin-bottom: 1.5rem;">
-                                            {{ proj.getDescription() }}
-                                        </p>
-                                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                            {% if proj.getLinkGithub() %}
-                                                <a href="{{ proj.getLinkGithub() }}" target="_blank" class="btn btn-sm btn-primary">
-                                                    <i class="fab fa-github"></i> Code
-                                                </a>
-                                            {% endif %}
-                                            {% if proj.getLinkDownload() %}
-                                                <a href="{{ proj.getLinkDownload() }}" target="_blank" class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-download"></i> Docs
-                                                </a>
-                                            {% endif %}
-                                        </div>
+                                        {% if proj.getLinkDownload() %}
+                                            <a href="{{ proj.getLinkDownload() }}" target="_blank" title="Télécharger">
+                                                <i class="fas fa-download"></i> Docs
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
