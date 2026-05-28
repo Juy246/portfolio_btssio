@@ -363,11 +363,7 @@
                         <p class="text-muted" style="margin-bottom: 1.5rem;">
                             Découvrez ma sélection des dernières tendances et innovations technologiques
                         </p>
-                        {% if veilles is not empty %}
-                            <a href="#veille-list" class="btn btn-primary btn-sm">Consulter ({{ veilles|length }} articles)</a>
-                        {% else %}
-                            <p class="text-muted" style="font-size: 0.85rem;">Aucune veille disponible</p>
-                        {% endif %}
+                        <a href="#veille-list" class="btn btn-primary btn-sm">Consulter ma veille</a>
                     </div>
                 </div>
 
@@ -400,45 +396,59 @@
             </div>
 
             <!-- Veille List -->
-            {% if veilles is not empty %}
-                <div id="veille-list">
-                    <h3 style="margin-bottom: 2rem; font-size: 1.2rem;">Dernières Veilles</h3>
-                    <div class="veille-grid">
-                        {% for veille in veilles %}
-                            <div class="veille-card fade-in">
-                                <div class="veille-icon">📚</div>
-                                <h5 class="veille-title">{{ veille.getTitre() }}</h5>
+            <div id="veille-list">
+                <h3 style="margin-bottom: 2rem; font-size: 1.2rem;">Dernières Veilles</h3>
+                <div class="veille-grid">
+                    <!-- Document Veille Technologique statique -->
+                    <div class="veille-card fade-in">
+                        <div class="veille-icon">📚</div>
+                        <h5 class="veille-title">Veille Technologique</h5>
+                        <p class="veille-desc">
+                            Analyse complète des tendances actuelles en cybersécurité et technologies de l'information. Ce document présente les outils et méthodologies de veille technologique, ainsi que ma veille réalisée sur les innovations du secteur.
+                        </p>
+                        <div class="veille-meta">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <a href="{{ asset('documents/Veille-Technologique_Jingyuan_LUO.pdf') }}" target="_blank" class="btn btn-sm btn-primary" title="PDF">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                                {% if veille.getCategorie() %}
-                                    <div style="margin-bottom: 0.75rem;">
-                                        <span class="skill-badge" style="font-size: 0.7rem;">{{ veille.getCategorie() }}</span>
-                                    </div>
-                                {% endif %}
+                    {% for veille in veilles %}
+                        <div class="veille-card fade-in">
+                            <div class="veille-icon">📚</div>
+                            <h5 class="veille-title">{{ veille.getTitre() }}</h5>
 
-                                <p class="veille-desc">
-                                    {{ veille.getDescription() }}
-                                </p>
+                            {% if veille.getCategorie() %}
+                                <div style="margin-bottom: 0.75rem;">
+                                    <span class="skill-badge" style="font-size: 0.7rem;">{{ veille.getCategorie() }}</span>
+                                </div>
+                            {% endif %}
 
-                                <div class="veille-meta">
-                                    <span style="font-size: 0.8rem;">{{ veille.getDate()|date('d/m/Y') }}</span>
-                                    <div style="display: flex; gap: 0.5rem;">
-                                        {% if veille.getPdfFile() %}
-                                            <a href="{{ asset('uploads/veille/' ~ veille.getPdfFile()) }}" target="_blank" class="btn btn-sm btn-primary" title="PDF">
-                                                <i class="fas fa-file-pdf"></i>
-                                            </a>
-                                        {% endif %}
-                                        {% if veille.getUrl() %}
-                                            <a href="{{ veille.getUrl() }}" target="_blank" class="btn btn-sm btn-secondary" style="color: var(--primary); border-color: var(--primary);" title="Lien">
-                                                <i class="fas fa-link"></i>
-                                            </a>
-                                        {% endif %}
-                                    </div>
+                            <p class="veille-desc">
+                                {{ veille.getDescription() }}
+                            </p>
+
+                            <div class="veille-meta">
+                                <span style="font-size: 0.8rem;">{{ veille.getDate()|date('d/m/Y') }}</span>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    {% if veille.getPdfFile() %}
+                                        <a href="{{ asset('uploads/veille/' ~ veille.getPdfFile()) }}" target="_blank" class="btn btn-sm btn-primary" title="PDF">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if veille.getUrl() %}
+                                        <a href="{{ veille.getUrl() }}" target="_blank" class="btn btn-sm btn-secondary" style="color: var(--primary); border-color: var(--primary);" title="Lien">
+                                            <i class="fas fa-link"></i>
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endif %}
+            </div>
         </div>
     </section>
 
@@ -449,56 +459,52 @@
                 <h2>Contact</h2>
             </div>
 
+            <div id="contact-notification" class="contact-notification" style="display: none;">
+                <span id="notification-message"></span>
+                <button class="notification-close" onclick="document.getElementById('contact-notification').style.display = 'none';">&times;</button>
+            </div>
+
             <div class="contact-grid">
                 <div class="fade-in">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Me contacter</h3>
-                    {% if app.flashes %}
-                        {% for flash_type, messages in app.flashes %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ flash_type == 'success' ? 'success' : 'error' }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endif %}
 
                     <div class="contact-section" style="margin-bottom: 0;">
-                        {{ form_start(form) }}
+                        <form id="contact-form" class="contact-form" method="POST" action="{{ path('app_contact_send') }}" enctype="multipart/form-data">
+                            <input type="hidden" name="contact[nom]" id="contact_nom" class="form-input">
+                            <input type="hidden" name="contact[prenom]" id="contact_prenom" class="form-input">
+                            <input type="hidden" name="contact[email]" id="contact_email" class="form-input">
+                            <input type="hidden" name="contact[sujet]" id="contact_sujet" class="form-input">
+                            <input type="hidden" name="contact[message]" id="contact_message" class="form-textarea">
 
                             <div class="form-group">
-                                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.nom, {'attr': {'class': 'form-input'}}) }}
-                                {{ form_errors(form.nom) }}
+                                <label class="form-label" for="nom">Nom</label>
+                                <input type="text" name="nom" id="nom" class="form-input" required autocomplete="family-name">
                             </div>
 
                             <div class="form-group">
-                                {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.prenom, {'attr': {'class': 'form-input'}}) }}
-                                {{ form_errors(form.prenom) }}
+                                <label class="form-label" for="prenom">Prénom</label>
+                                <input type="text" name="prenom" id="prenom" class="form-input" required autocomplete="given-name">
                             </div>
 
                             <div class="form-group">
-                                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.email, {'attr': {'class': 'form-input'}}) }}
-                                {{ form_errors(form.email) }}
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-input" required autocomplete="email">
                             </div>
 
                             <div class="form-group">
-                                {{ form_label(form.sujet, 'Sujet', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.sujet, {'attr': {'class': 'form-input'}}) }}
-                                {{ form_errors(form.sujet) }}
+                                <label class="form-label" for="sujet">Sujet</label>
+                                <input type="text" name="sujet" id="sujet" class="form-input" required>
                             </div>
 
                             <div class="form-group">
-                                {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.message, {'attr': {'class': 'form-textarea'}}) }}
-                                {{ form_errors(form.message) }}
+                                <label class="form-label" for="message">Message</label>
+                                <textarea name="message" id="message" class="form-textarea" required></textarea>
                             </div>
 
                             <div style="margin-top: 2rem;">
-                                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary', 'style': 'width: 100%; justify-content: center;'}}) }}
+                                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Envoyer</button>
                             </div>
-                        {{ form_end(form) }}
+                        </form>
                     </div>
                 </div>
 
@@ -534,7 +540,54 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        // Function to show notification
+        function showNotification(message, isSuccess) {
+            const notification = document.getElementById('contact-notification');
+            const messageEl = document.getElementById('notification-message');
+
+            notification.classList.remove('success', 'error');
+            notification.classList.add(isSuccess ? 'success' : 'error');
+            messageEl.textContent = message;
+            notification.style.display = 'flex';
+
+            // Auto-hide after 6 seconds
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 6000);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle contact form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(this);
+
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showNotification(data.message, true);
+                            contactForm.reset();
+                        } else {
+                            showNotification(data.message || 'Le message n\'est pas envoyé, ressayez', false);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showNotification('Le message n\'est pas envoyé, ressayez', false);
+                    });
+                });
+            }
+
             // Smooth scroll for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {

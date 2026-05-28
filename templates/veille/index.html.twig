@@ -6,7 +6,28 @@
     <div class="container mt-5">
         <h1 class="mb-5 text-center">Veille Technologique</h1>
 
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="margin-bottom: 1rem;">Veille Technologique</h5>
+
+                        <p class="card-text text-muted" style="margin-bottom: 1.5rem;">
+                            Analyse complète des tendances actuelles en cybersécurité et technologies de l'information. Ce document présente les outils et méthodologies de veille technologique, ainsi que ma veille réalisée sur les innovations du secteur.
+                        </p>
+
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <a href="{{ asset('documents/Veille-Technologique_Jingyuan_LUO.pdf') }}" target="_blank" download class="btn btn-sm btn-primary">
+                                <i class="fas fa-file-pdf"></i> Télécharger le PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% if veilles is not empty %}
+            <h2 class="mt-5 mb-4">Autres veilles</h2>
             <div class="row">
                 {% for veille in veilles %}
                     <div class="col-md-6 mb-4">
