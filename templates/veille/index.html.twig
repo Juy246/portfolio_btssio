@@ -40,9 +40,11 @@
                                     {% endif %}
                                 </div>
 
-                                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">
-                                     {{ veille.getDate()|date('d/m/Y') }}
-                                </p>
+                                {% if veille.getDate() is not null %}
+                                    <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">
+                                         {{ veille.getDate()|date('d/m/Y') }}
+                                    </p>
+                                {% endif %}
 
                                 <p class="card-text text-muted" style="margin-bottom: 1.5rem;">
                                     {{ veille.getDescription()|slice(0, 200) }}{% if veille.getDescription()|length > 200 %}...{% endif %}
