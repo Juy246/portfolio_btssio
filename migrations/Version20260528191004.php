@@ -8,25 +8,26 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Add url column to certification table
+ * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20260524000001 extends AbstractMigration
+final class Version20260528191004 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Add url column to certification table';
+        return '';
     }
 
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE certification ADD url VARCHAR(500) DEFAULT NULL');
+        $this->addSql('ALTER TABLE certification DROP badge, DROP created_at');
+        $this->addSql('ALTER TABLE projet DROP matiere');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE certification DROP COLUMN url');
+        $this->addSql('ALTER TABLE certification ADD badge VARCHAR(255) DEFAULT NULL, ADD created_at DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE projet ADD matiere VARCHAR(255) NOT NULL');
     }
 }
-
